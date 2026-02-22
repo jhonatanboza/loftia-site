@@ -21,6 +21,7 @@ h1{text-align:center}
 .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:#00000070;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer}
 .whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;padding:14px 16px;border-radius:50px;text-decoration:none;font-weight:bold}
 </style>
+
 </head>
 
 <body>
@@ -65,10 +66,8 @@ h1{text-align:center}
 <h2>Escolha sua oferta</h2>
 
 <div style="text-align:center; margin-bottom:20px;">
-<!-- Substitua os links abaixo pelos links gerados no Mercado Pago -->
-<a class="btn" href="https://mpago.la/1b5wn2L" target="_blank">🛒 Comprar 1 Kit — R$129,90</a>
-<a class="btn orange" href="https://mpago.li/2A1wHKm" target="_blank">🔥 Comprar 2 Kits — R$249,90</a>
-<a class="btn" href="https://mpago.li/2FRuJqa" target="_blank">💥 Comprar 3 Kits — R$369,90</a>
+<!-- Botão oficial Mercado Pago -->
+<button class="btn" id="mp-checkout-button">🛒 Comprar 1 Kit — R$129,90</button>
 </div>
 
 <p style="text-align:center;font-size:14px;">🔒 Compra segura • Garantia de 7 dias</p>
@@ -89,9 +88,19 @@ const images=document.querySelectorAll('.slides img');
 let index=0;
 document.querySelector('.next').onclick=()=>{index=(index+1)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
 document.querySelector('.prev').onclick=()=>{index=(index-1+images.length)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
+
+// Mercado Pago Checkout Web
+(function(){
+  const script = document.createElement("script");
+  script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
+  script.setAttribute("data-preference-id", "539440876-2abc9bfc-d4e3-4a16-a37e-e240effbbda6");
+  script.setAttribute("data-source", "button");
+  document.getElementById("mp-checkout-button").appendChild(script);
+})();
 </script>
 
 </body>
 </html>
+
 
 
