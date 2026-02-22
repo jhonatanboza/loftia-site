@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loftia | Kit 3 Luminárias LED</title>
 
-<!-- SDK do Mercado Pago -->
-<script src="https://sdk.mercadopago.com/js/v2"></script>
-<script>
-  const mp = new MercadoPago("APP_USR-c39a84c1-ea44-40ab-b73e-d1cc06fc50dc", { locale: "pt-BR" });
-</script>
-
 <style>
 body{font-family:Arial;margin:0;background:#f2f2f2;color:#333}
 .container{max-width:600px;margin:auto;background:#fff;padding:20px}
@@ -26,7 +20,6 @@ h1{text-align:center}
 .slides img{width:100%;flex-shrink:0;border-radius:10px}
 .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:#00000070;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer}
 .whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;padding:14px 16px;border-radius:50px;text-decoration:none;font-weight:bold}
-input[type=number]{width:60px;padding:8px;font-size:16px;margin-right:10px;border-radius:5px;border:1px solid #ccc;text-align:center;}
 </style>
 </head>
 
@@ -72,10 +65,10 @@ input[type=number]{width:60px;padding:8px;font-size:16px;margin-right:10px;borde
 <h2>Escolha sua oferta</h2>
 
 <div style="text-align:center; margin-bottom:20px;">
-<input type="number" id="quantidade" min="1" value="1">
-<button class="btn" onclick="comprar(parseInt(document.getElementById('quantidade').value))">
-🛒 Comprar Kit
-</button>
+<!-- Substitua os links abaixo pelos links gerados no Mercado Pago -->
+<a class="btn" href="LINK_MP_1_KIT" target="_blank">🛒 Comprar 1 Kit — R$129,90</a>
+<a class="btn orange" href="LINK_MP_2_KITS" target="_blank">🔥 Comprar 2 Kits — R$249,90</a>
+<a class="btn" href="LINK_MP_3_KITS" target="_blank">💥 Comprar 3 Kits — R$369,90</a>
 </div>
 
 <p style="text-align:center;font-size:14px;">🔒 Compra segura • Garantia de 7 dias</p>
@@ -96,33 +89,8 @@ const images=document.querySelectorAll('.slides img');
 let index=0;
 document.querySelector('.next').onclick=()=>{index=(index+1)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
 document.querySelector('.prev').onclick=()=>{index=(index-1+images.length)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
-
-// Função Mercado Pago Checkout Pro
-function comprar(qtd){
-  const checkout = mp.checkout({
-    preference:{
-      items:[
-        {
-          title:"Kit 3 Luminárias LED",
-          quantity: qtd,
-          unit_price: 129.90,
-          currency_id:"BRL"
-        }
-      ],
-      back_urls:{
-        success:"https://loftia.com.br/obrigado.html",
-        failure:"https://loftia.com.br/falha.html",
-        pending:"https://loftia.com.br/pendente.html"
-      },
-      auto_return:"approved"
-    }
-  });
-  checkout.open();
-}
 </script>
 
 </body>
 </html>
-</body>
 
-</html>
