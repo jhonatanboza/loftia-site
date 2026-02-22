@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loftia | Kit 3 Luminárias LED</title>
+
+<!-- SDK do Mercado Pago -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+  const mp = new MercadoPago("APP_USR-c39a84c1-ea44-40ab-b73e-d1cc06fc50dc", { locale: "pt-BR" });
+</script>
+
+<style>
+body{font-family:Arial;margin:0;background:#f2f2f2;color:#333}
+.container{max-width:600px;margin:auto;background:#fff;padding:20px}
+.badge{background:#ff4444;color:#fff;padding:8px;text-align:center;border-radius:5px;font-weight:bold}
+h1{text-align:center}
+.price{font-size:34px;color:#0a8;text-align:center;font-weight:bold}
+.old-price{text-decoration:line-through;text-align:center;color:#888}
+.btn{display:block;background:#0a8;color:#fff;text-decoration:none;padding:18px;text-align:center;border-radius:10px;font-size:18px;margin:20px 0;font-weight:bold;cursor:pointer}
+.btn.orange{background:#ff6b00}
+.footer{text-align:center;font-size:12px;color:#888;margin-top:20px}
+.carrossel{position:relative;overflow:hidden;margin:20px 0}
+.slides{display:flex;transition:.4s}
+.slides img{width:100%;flex-shrink:0;border-radius:10px}
+.prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:#00000070;color:#fff;border:none;padding:10px;border-radius:50%;cursor:pointer}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;padding:14px 16px;border-radius:50px;text-decoration:none;font-weight:bold}
+input[type=number]{width:60px;padding:8px;font-size:16px;margin-right:10px;border-radius:5px;border:1px solid #ccc;text-align:center;}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="badge">⚠️ Promoção ativa — últimas unidades</div>
+
+<h1>Kit 3 Luminárias LED com Sensor</h1>
+<p style="text-align:center">Iluminação automática prática e sem fios.</p>
+
+<!-- Carrossel de imagens -->
+<div class="carrossel">
+<button class="prev">&#10094;</button>
+<div class="slides">
+<img src="https://i.imgur.com/tCdlONi.jpg">
+<img src="https://i.imgur.com/ONvaGQW.jpg">
+<img src="https://i.imgur.com/UnvFuNS.jpg">
+<img src="https://i.imgur.com/FjiWVAE.jpg">
+</div>
+<button class="next">&#10095;</button>
+</div>
+
+<h2>Benefícios</h2>
+<ul>
+<li>✔ Acendimento automático</li>
+<li>✔ Sem instalação elétrica</li>
+<li>✔ Economia de energia</li>
+<li>✔ Kit com 3 unidades</li>
+</ul>
+
+<h2>O que você precisa saber</h2>
+<ul>
+<li>Unidades por kit: 3</li>
+<li>Possui 21 LEDs</li>
+<li>Carga completa em 1 hora</li>
+<li>Fluxo luminoso de 300 lúmens</li>
+</ul>
+
+<div class="old-price">De R$199,90</div>
+<div class="price">Por R$129,90</div>
+
+<h2>Escolha sua oferta</h2>
+
+<div style="text-align:center; margin-bottom:20px;">
+<input type="number" id="quantidade" min="1" value="1">
+
+<button class="btn" onclick="comprar(1)">🛒 Comprar 1 Kit — R$129,90</button>
+<button class="btn orange" onclick="comprar(2)">🔥 Oferta mais escolhida — 2 Kits R$249,90</button>
+</div>
+
+<script>
+function comprar(kits){
+  const qtd = parseInt(document.getElementById("quantidade").value) * kits;
+  const checkout = mp.checkout({
+    preference:{
+      items:[
+        {
+          title:"Kit 3 Luminárias LED",
+          quantity:qtd,
+          unit_price:129.90,
+          currency_id:"BRL"
+        }
+      ],
+      back_urls:{
+        success:"https://loftia.com.br/obrigado.html",
+        failure:"https://loftia.com.br/falha.html",
+        pending:"https://loftia.com.br/pendente.html"
+      },
+      auto_return:"approved"
+    }
+  });
+  checkout.open();
+}
+</script>
+
+<p style="text-align:center;font-size:14px;">🔒 Compra segura • Garantia de 7 dias</p>
+
+<div class="footer">
+<a href="politica.html">Políticas</a><br>
+© 2026 Loftia
+</div>
+
+</div>
+
+<a class="whatsapp" href="https://wa.me/55SEUNUMERO">WhatsApp</a>
+
+<script>
+const slides=document.querySelector('.slides');
+const images=document.querySelectorAll('.slides img');
+let index=0;
+document.querySelector('.next').onclick=()=>{index=(index+1)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
+document.querySelector('.prev').onclick=()=>{index=(index-1+images.length)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
+</script>
+
+</body>
+</html>
