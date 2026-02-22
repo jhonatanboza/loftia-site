@@ -42,10 +42,10 @@ input[type=number]{width:60px;padding:8px;font-size:16px;margin-right:10px;borde
 <div class="carrossel">
 <button class="prev">&#10094;</button>
 <div class="slides">
-<img src="https://i.imgur.com/tCdlONi.jpg">
-<img src="https://i.imgur.com/ONvaGQW.jpg">
-<img src="https://i.imgur.com/UnvFuNS.jpg">
-<img src="https://i.imgur.com/FjiWVAE.jpg">
+<img src="https://i.imgur.com/tCdlONi.jpg" alt="Luminária 1">
+<img src="https://i.imgur.com/ONvaGQW.jpg" alt="Luminária 2">
+<img src="https://i.imgur.com/UnvFuNS.jpg" alt="Luminária 3">
+<img src="https://i.imgur.com/FjiWVAE.jpg" alt="Luminária 4">
 </div>
 <button class="next">&#10095;</button>
 </div>
@@ -73,21 +73,39 @@ input[type=number]{width:60px;padding:8px;font-size:16px;margin-right:10px;borde
 
 <div style="text-align:center; margin-bottom:20px;">
 <input type="number" id="quantidade" min="1" value="1">
-
-<button class="btn" onclick="comprar(1)">🛒 Comprar 1 Kit — R$129,90</button>
-<button class="btn orange" onclick="comprar(2)">🔥 Oferta mais escolhida — 2 Kits R$249,90</button>
+<button class="btn" onclick="comprar(parseInt(document.getElementById('quantidade').value))">
+🛒 Comprar Kit
+</button>
 </div>
 
+<p style="text-align:center;font-size:14px;">🔒 Compra segura • Garantia de 7 dias</p>
+
+<div class="footer">
+<a href="politica.html">Políticas</a><br>
+© 2026 Loftia
+</div>
+
+</div>
+
+<a class="whatsapp" href="https://wa.me/55SEUNUMERO">WhatsApp</a>
+
 <script>
-function comprar(kits){
-  const qtd = parseInt(document.getElementById("quantidade").value) * kits;
+// Carrossel
+const slides=document.querySelector('.slides');
+const images=document.querySelectorAll('.slides img');
+let index=0;
+document.querySelector('.next').onclick=()=>{index=(index+1)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
+document.querySelector('.prev').onclick=()=>{index=(index-1+images.length)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
+
+// Função Mercado Pago Checkout Pro
+function comprar(qtd){
   const checkout = mp.checkout({
     preference:{
       items:[
         {
           title:"Kit 3 Luminárias LED",
-          quantity:qtd,
-          unit_price:129.90,
+          quantity: qtd,
+          unit_price: 129.90,
           currency_id:"BRL"
         }
       ],
@@ -103,24 +121,8 @@ function comprar(kits){
 }
 </script>
 
-<p style="text-align:center;font-size:14px;">🔒 Compra segura • Garantia de 7 dias</p>
-
-<div class="footer">
-<a href="politica.html">Políticas</a><br>
-© 2026 Loftia
-</div>
-
-</div>
-
-<a class="whatsapp" href="https://wa.me/55SEUNUMERO">WhatsApp</a>
-
-<script>
-const slides=document.querySelector('.slides');
-const images=document.querySelectorAll('.slides img');
-let index=0;
-document.querySelector('.next').onclick=()=>{index=(index+1)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
-document.querySelector('.prev').onclick=()=>{index=(index-1+images.length)%images.length;slides.style.transform=`translateX(-${index*100}%)`;}
-</script>
-
 </body>
+</html>
+</body>
+
 </html>
